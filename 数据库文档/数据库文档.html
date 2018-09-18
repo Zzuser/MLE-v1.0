@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>mledb</title>
+</head>
+<style>
+    th {
+        background: cornflowerblue;
+    }
+
+    table {
+        margin-bottom: 30px;
+    }
+
+</style>
+<body>
+<h2>店家表</h2>
+<h3>shop</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>shop_id</th>
+        <th>shop_name</th>
+        <th>phone</th>
+        <th>manager_name</th>
+        <th>manager_idcard</th>
+        <th>password</th>
+        <th>salt</th>
+        <th>address</th>
+        <th>proclamation</th>
+        <th>profile</th>
+        <th>shop_hours</th>
+        <th>state</th>
+        <th>main_score</th>
+        <th>createtime</th>
+        <th>distribution_score</th>
+        <th>package_score</th>
+        <th>taste_score</th>
+        <th>min_price</th>
+        <th>shipping_fee</th>
+    </tr>
+    <tr>
+        <td>店家id</td>
+        <td>店家名</td>
+        <td>联系电话</td>
+        <td>责任人姓名</td>
+        <td>身份证号</td>
+        <td>管理密码</td>
+        <td>密码盐</td>
+        <td>地址</td>
+        <td>公告</td>
+        <td>商铺图片url</td>
+        <td>营业时间</td>
+        <td>商铺状态</td>
+        <td>商铺评分</td>
+        <td>创建时间</td>
+        <td>配送评分</td>
+        <td>包装评分</td>
+        <td>味道评分</td>
+        <td>起送价</td>
+        <td>配送费</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>黄以波面馆</td>
+        <td>13199999999</td>
+        <td>黄以波</td>
+        <td>102930201801013333</td>
+        <td>123456</td>
+        <td>123</td>
+        <td>黄土高坡</td>
+        <td>黄以波餐馆坑死人不偿命</td>
+        <td>/abc/cba/hyb.jpg</td>
+        <td>8:00-16:00</td>
+        <td>1</td>
+        <td>0</td>
+        <td>2018-09-10</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>20</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>费志刚披萨</td>
+        <td>13188888888</td>
+        <td>费志刚</td>
+        <td>102930201801013332</td>
+        <td>123456</td>
+        <td>134</td>
+        <td>青藏高原</td>
+        <td>费志刚披萨咬得动算你赢</td>
+        <td>asdf/asdf/sadf.jpg</td>
+        <td>9:00-20:00</td>
+        <td>1</td>
+        <td>0</td>
+        <td>2018-09-12</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>80</td>
+        <td>50</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>冉瑞鹏烧烤</td>
+        <td>13177777777</td>
+        <td>冉瑞鹏</td>
+        <td>123412341234123412</td>
+        <td>123456</td>
+        <td>123</td>
+        <td>乌鲁木齐</td>
+        <td>冉瑞鹏烧烤敢吃算我输</td>
+        <td>sadf/asfds/sadf.jpg</td>
+        <td>1:00:23:00</td>
+        <td>1</td>
+        <td>0</td>
+        <td>2018-09-12</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>324</td>
+        <td>23</td>
+    </tr>
+</table>
+<h2>店铺分类表</h2>
+<h3>shop_category</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>shop_category_id</th>
+        <th>shop_category_name</th>
+        <th>shop_category_desc</th>
+    </tr>
+    <tr>
+        <td>店铺分类id</td>
+        <td>店铺分类名称</td>
+        <td>描述</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>家常菜馆</td>
+        <td>NULL</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>品牌保证</td>
+        <td>NULL</td>
+    </tr>
+</table>
+
+<h2>店铺与其分类关系表</h2>
+<h3>shop_with_category</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>id</th>
+        <th>shop_id_f</th>
+        <th>shop_category_id_f</th>
+    </tr>
+    <tr>
+        <td>主键</td>
+        <td>店铺id</td>
+        <td>店铺分类id</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>1</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>2</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>3</td>
+        <td>2</td>
+    </tr>
+</table>
+
+<h2>店家折扣表</h2>
+<h3>shop_discount</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>discount_id</th>
+        <th>discount_name</th>
+        <th>shop_id_f</th>
+        <th>desc</th>
+        <th>percent</th>
+        <th>direct</th>
+        <th>min_price</th>
+        <th>createtime</th>
+    </tr>
+    <tr>
+        <td>店家折扣id</td>
+        <td>折扣名称</td>
+        <td>商铺id</td>
+        <td>描述</td>
+        <td>百分比折扣</td>
+        <td>立减优惠</td>
+        <td>最小价格</td>
+        <td>创建时间</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>5折</td>
+        <td>1</td>
+        <td>五折优惠</td>
+        <td>0.5</td>
+        <td>0</td>
+        <td>0</td>
+        <td>2018-09-10</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>满20减50</td>
+        <td>2</td>
+        <td>NULL</td>
+        <td>1</td>
+        <td>50</td>
+        <td>20</td>
+        <td>2018-09-12</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>满30减100</td>
+        <td>1</td>
+        <td>NULL</td>
+        <td>1</td>
+        <td>100</td>
+        <td>30</td>
+        <td>2018-09-12</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>满1000减40</td>
+        <td>2</td>
+        <td>NULL</td>
+        <td>1</td>
+        <td>40</td>
+        <td>1000</td>
+        <td>2018-09-12</td>
+    </tr>
+</table>
+
+<h2>店家评价表</h2>
+<h3>shop_evaluate</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>evaluate_id</th>
+        <th>user_id_f</th>
+        <th>shop_id_f</th>
+        <th>taste_score</th>
+        <th>package_score</th>
+        <th>main_score</th>
+        <th>desc</th>
+        <th>shop_reply</th>
+        <th>has_image</th>
+        <th>createtime</th>
+    </tr>
+    <tr>
+        <td>店家评价id</td>
+        <td>用户id</td>
+        <td>店家id</td>
+        <td>味道评分</td>
+        <td>包装评分</td>
+        <td>总分/td>
+        <td>评价内容</td>
+        <td>店家回复</td>
+        <td>是否有图</td>
+        <td>创建时间</td>
+    </tr>
+</table>
+
+<h2>店家评价图片表</h2>
+<h3>shop_eva_image</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>shop_eva_image_id</th>
+        <th>shop_eva_id_f</th>
+        <th>url</th>
+        <th>desc</th>
+    </tr>
+    <tr>
+        <td>店家评价图片id</td>
+        <td>店家评价id</td>
+        <td>店家评价图片url</td>
+        <td>描述</td>
+    </tr>
+</table>
+
+
+<h2>总菜单</h2>
+<h3>father_menu</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>father_menu_id</th>
+        <th>shop_id_f</th>
+        <th>father_menu_name</th>
+        <th>desc</th>
+        <th>state</th>
+        <th>createtime</th>
+    </tr>
+    <tr>
+        <td>总菜单id</td>
+        <td>店铺id</td>
+        <td>总菜单名称</td>
+        <td>总菜单描述</td>
+        <td>激活状态</td>
+        <td>创建时间</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>坑人1号</td>
+        <td>第一份坑人菜单</td>
+        <td>1</td>
+        <td>2018-09-12</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>2</td>
+        <td>硬1号</td>
+        <td>第一硬菜</td>
+        <td>1</td>
+        <td>2018-09-12</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>3</td>
+        <td>不敢吃1号</td>
+        <td>牛逼</td>
+        <td>1</td>
+        <td>2018-09-12</td>
+    </tr>
+</table>
+
+<h2>子菜单表</h2>
+<h3>child_menu</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>child_menu_id</th>
+        <th>shop_id_f</th>
+        <th>father_menu_id_f</th>
+        <th>child_menu_name</th>
+        <th>child_menu_desc</th>
+        <th>createtime</th>
+    </tr>
+    <tr>
+        <td>子菜单id</td>
+        <td>商铺id</td>
+        <td>总菜单id</td>
+        <td>子菜单名称</td>
+        <td>子菜单描述</td>
+        <td>创建时间</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>精品面食</td>
+        <td>NULL</td>
+        <td>2018-09-12</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>1</td>
+        <td>1</td>
+        <td>精品热菜</td>
+        <td>NULL</td>
+        <td>2018-09-12</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>1</td>
+        <td>1</td>
+        <td>特色菜</td>
+        <td>NULL</td>
+        <td>2018-09-12</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>2</td>
+        <td>2</td>
+        <td>品牌推荐</td>
+        <td>NULL</td>
+        <td>2018-09-12</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>3</td>
+        <td>3</td>
+        <td>烤大肉</td>
+        <td>NULL</td>
+        <td>2018-09-12</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>3</td>
+        <td>3</td>
+        <td>烤小肉</td>
+        <td></td>
+        <td>2018-09-12</td>
+    </tr>
+</table>
+
+
+<h2>子菜单菜品关系表</h2>
+<h3>dish_with_child_menu</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>id</th>
+        <th>dish_id_f</th>
+        <th>child_menu_id_f</th>
+    </tr>
+    <tr>
+        <td>主键</td>
+        <td>菜品id</td>
+        <td>子菜单id</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>2</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>3</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>4</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>5</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>6</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>7</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>8</td>
+        <td>4</td>
+    </tr>
+</table>
+<!--========================================================================-->
+<hr>
+<h2>菜品表</h2>
+<h3>dish</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>dish_id</th>
+        <th>dish_name</th>
+        <th>shop_id_f</th>
+        <th>image</th>
+        <th>createtime</th>
+        <th>grade</th>
+        <th>dish_desc</th>
+        <th>dish_discount</th>
+        <th>state</th>
+        <th>price</th>
+        <th>num</th>
+        <th>saled_num</th>
+    </tr>
+    <tr>
+        <td>菜品id（主键）</td>
+        <td>菜品名称</td>
+        <td>商铺id</td>
+        <td>菜品图片</td>
+        <td>创建日期</td>
+        <td>评分</td>
+        <td>菜品描述</td>
+        <td>菜品折扣</td>
+        <td>菜品状态</td>
+        <td>菜品价格</td>
+        <td>菜品库存</td>
+        <td>已售数量</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>油泼面</td>
+        <td>1</td>
+        <td>/aaa/ypm.jpg</td>
+        <td>2018-09-10</td>
+        <td>0</td>
+        <td>难吃死了</td>
+        <td>1</td>
+        <td>1</td>
+        <td>100</td>
+        <td>999</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>福建烤老鼠</td>
+        <td>1</td>
+        <td>/aaa/kls.jpg</td>
+        <td>2018-09-10</td>
+        <td>0</td>
+        <td>吓死人</td>
+        <td>1</td>
+        <td>1</td>
+        <td>200</td>
+        <td>999</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>蚂蚁上树</td>
+        <td>1</td>
+        <td>/aaa/myss.jpg</td>
+        <td>2018-09-10</td>
+        <td>0</td>
+        <td>不能吃</td>
+        <td>1</td>
+        <td>1</td>
+        <td>300</td>
+        <td>999</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>充钱小面</td>
+        <td>1</td>
+        <td>/aaa/cqxm.jpg</td>
+        <td>2018-09-12</td>
+        <td>0</td>
+        <td>吃死人</td>
+        <td>1</td>
+        <td>1</td>
+        <td>400</td>
+        <td>999</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>飘香卤煮</td>
+        <td>1</td>
+        <td>/sada/sdf.jpg</td>
+        <td>2018-09-12</td>
+        <td>0</td>
+        <td>真香</td>
+        <td>1</td>
+        <td>1</td>
+        <td>500</td>
+        <td>999</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>绝命鸭脖</td>
+        <td>1</td>
+        <td>/sdfgds/sdfs.jpg</td>
+        <td>2018-09-12</td>
+        <td>0</td>
+        <td>五步倒</td>
+        <td>1</td>
+        <td>1</td>
+        <td>600</td>
+        <td>999</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>顽石榴莲披萨</td>
+        <td>2</td>
+        <td>sdfsa/sadf/sd.jpg</td>
+        <td>2018-09-12</td>
+        <td>0</td>
+        <td>硬！</td>
+        <td>1</td>
+        <td>1</td>
+        <td>123</td>
+        <td>123</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>金刚石龙虾披萨</td>
+        <td>2</td>
+        <td>df/dfg/sf.jpg</td>
+        <td>2018-09-12</td>
+        <td>0</td>
+        <td>硬！！</td>
+        <td>1</td>
+        <td>1</td>
+        <td>34</td>
+        <td>234</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>烤大象</td>
+        <td>3</td>
+        <td>dsf/saf/saf.jpg</td>
+        <td>2018-09-12</td>
+        <td>0</td>
+        <td>大</td>
+        <td>1</td>
+        <td>1</td>
+        <td>12</td>
+        <td>123</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>烤蚂蚁</td>
+        <td>3</td>
+        <td>dfsdf</td>
+        <td>2018-09-12</td>
+        <td>0</td>
+        <td>小</td>
+        <td>1</td>
+        <td>1</td>
+        <td>23</td>
+        <td>233</td>
+        <td>0</td>
+    </tr>
+</table>
+
+
+
+<h2>菜品评价表</h2>
+<h3>dish_evaluate</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>dish_evaluate_id</th>
+        <th>user_id_f</th>
+        <th>dish_id_f</th>
+        <th>desc</th>
+        <th>shop_reply</th>
+        <th>praise</th>
+        <th>createtime</th>
+        <th>has_image</th>
+    </tr>
+    <tr>
+        <td>菜品评价id</td>
+        <td>用户id</td>
+        <td>菜品id</td>
+        <td>评价内容</td>
+        <td>店家回复</td>
+        <td>是否点赞</td>
+        <td>创建时间</td>
+        <td>是否有图</td>
+    </tr>
+</table>
+<h2>菜品评价图片</h2>
+<h3>dish_eva_image</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>dish_eva_image_id</th>
+        <th>dish_eva_id_f</th>
+        <th>url</th>
+        <th>desc</th>
+    </tr>
+
+    <tr>
+        <td>菜品评价图片id</td>
+        <td>菜品评价id</td>
+        <td>菜品评价图片url</td>
+        <td>菜品评价图片描述</td>
+    </tr>
+</table>
+
+<h2>菜品分类表</h2>
+<h3>dish_category</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>dish_category_id</th>
+        <th>dish_category_name</th>
+        <th>desc</th>
+    </tr>
+    <tr>
+        <td>菜品分类id</td>
+        <td>分类名称</td>
+        <td>分类描述</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>热菜</td>
+        <td>NULL</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>主食</td>
+        <td>NULL</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>披萨</td>
+        <td></td>
+    </tr>
+</table>
+
+<h2>菜品与其分类关系表</h2>
+<h3>dish_with_category</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>id</th>
+        <th>dish_id_f</th>
+        <th>category_id_f</th>
+    </tr>
+    <tr>
+        <td>id（主键）</td>
+        <td>菜品id</td>
+        <td>分类id</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>2</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>3</td>
+        <td>1</td>
+    </tr>
+</table>
+
+<hr>
+<h2>用户基础信息表</h2>
+<h3>user</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>user_id</th>
+        <th>username</th>
+        <th>phone</th>
+        <th>password</th>
+        <th>salt</th>
+        <th>createtime</th>
+        <th>current_ip</th>
+        <th>state</th>
+    </tr>
+    <tr>
+        <td>用户id</td>
+        <td>用户名</td>
+        <td>电话</td>
+        <td>密码</td>
+        <td>密码盐</td>
+        <td>创建时间</td>
+        <td>最后登录ip</td>
+        <td>用户状态</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>ranruipeng</td>
+        <td>1234554321</td>
+        <td>123456</td>
+        <td>NULL</td>
+        <td>2018-09-10</td>
+        <td>127.0.0.1</td>
+        <td>1</td>
+    </tr>
+</table>
+
+<h2>用户额外信息表</h2>
+<h3>user_extra</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>user_extra_id</th>
+        <th>user_id_f</th>
+        <th>qq</th>
+        <th>weixin</th>
+        <th>real_name</th>
+        <th>idcard_num</th>
+    </tr>
+    <tr>
+        <td>额外信息id</td>
+        <td>用户id</td>
+        <td>QQ</td>
+        <td>微信</td>
+        <td>真实姓名</td>
+        <td>身份证号码</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>12345678</td>
+        <td>weee</td>
+        <td>冉瑞鹏</td>
+        <td>23435345436634534</td>
+    </tr>
+</table>
+
+<h2>用户地址表</h2>
+<h3>user_address</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>user_address_id</th>
+        <th>user_id_f</th>
+        <th>address</th>
+    </tr>
+    <tr>
+        <td>地址id</td>
+        <td>用户id</td>
+        <td>地址</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>新疆吐鲁番歪把子村</td>
+    </tr>
+</table>
+
+<h2>用户角色表</h2>
+<h3>role</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>role_id</th>
+        <th>role_name</th>
+        <th>role_desc</th>
+    </tr>
+    <tr>
+        <td>用户角色id</td>
+        <td>角色名</td>
+        <td>描述</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>ROLE_USER</td>
+        <td>普通用户</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>ROLE_VIP</td>
+        <td>普通会员</td>
+    </tr>
+</table>
+
+<h2>用户及其角色关系表</h2>
+<h3>user_with_role</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>id</th>
+        <th>user_id_f</th>
+        <th>role_id_f</th>
+    </tr>
+    <tr>
+        <td>主键</td>
+        <td>用户id</td>
+        <td>角色id</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>1</td>
+        <td>2</td>
+    </tr>
+</table>
+<hr>
+<h2>骑手表</h2>
+<h3>horseman</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>horseman_id</th>
+        <th>horseman_phone</th>
+        <th>real_name</th>
+        <th>idcard</th>
+        <th>total_shipping_num</th>
+        <th>ontime_shipping_num</th>
+        <th>score</th>
+        <th>ontime_rate</th>
+        <th>createtime</th>
+    </tr>
+    <tr>
+        <td>骑手id</td>
+        <td>骑手电话</td>
+        <td>骑手姓名</td>
+        <td>身份证号</td>
+        <td>送餐总数</td>
+        <td>准时总数</td>
+        <td>评分</td>
+        <td>准时率</td>
+        <td>创建时间</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>13188888888</td>
+        <td>贾菊鹏</td>
+        <td>213123123423231234</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>2018-09-10</td>
+    </tr>
+</table>
+<hr>
+<h2>订单表</h2>
+<h3>mle_order</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>order_id</th>
+        <th>shop_id_f</th>
+        <th>user_id_f</th>
+        <th>hourseman_id_f</th>
+        <th>user_address_id_f</th>
+        <th>state</th>
+        <th>createtime</th>
+        <th>finishtime</th>
+        <th>exp_time</th>
+        <th>total_price</th>
+        <th>shipping_fee</th>
+        <th>pay_type_id_f</th>
+        <th>order_type_id_f</th>
+    </tr>
+    <tr>
+        <td>订单id</td>
+        <td>商铺id</td>
+        <td>用户id</td>
+        <td>骑手id</td>
+        <td>用户地址id/td>
+        <td>订单状态</td>
+        <td>创建时间</td>
+        <td>完成时间</td>
+        <td>预计送达时间</td>
+        <td>总价</td>
+        <td>配送费</td>
+        <td>支付方式</td>
+        <td>订单类型</td>
+    </tr>
+</table>
+
+<h2>订单类型表</h2>
+<h3>order_type</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>order_type_id</th>
+        <th>order_type_name</th>
+        <th>desc</th>
+    </tr>
+    <tr>
+        <td>订单类型id</td>
+        <td>类型名</td>
+        <td>描述</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>on_time</td>
+        <td>准时达</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>hold_on</td>
+        <td>预定单</td>
+    </tr>
+</table>
+
+<h2>订单与其菜品关系表</h2>
+<h3>order_with_dish</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>id</th>
+        <th>order_id_f</th>
+        <th>dish_id_f</th>
+        <th>dish_num</th>
+        <th>total_price</th>
+    </tr>
+    <tr>
+        <td>id(主键)</td>
+        <td>订单id</td>
+        <td>菜品id</td>
+        <td>菜品数量/td>
+        <td>单项总价</td>
+    </tr>
+</table>
+
+<h2>支付类型表</h2>
+<h3>pay_type</h3>
+<table border="1" style="border-collapse:collapse">
+    <tr>
+        <th>pay_type_id</th>
+        <th>pay_name</th>
+        <th>desc</th>
+    </tr>
+    <tr>
+        <td>支付类型id</td>
+        <td>支付类型名</td>
+        <td>描述</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>alipay</td>
+        <td>支付宝</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>weixin</td>
+        <td>微信</td>
+    </tr>
+</table>
+
+</body>
+</html>
