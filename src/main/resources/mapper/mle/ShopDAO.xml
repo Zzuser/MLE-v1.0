@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tedu.mle.dao.ShopDAO">
-    <resultMap id="BaseResultMap" type="com.tedu.mle.entity.Shop">
+<mapper namespace="com.tedu.mle.common.dao.ShopDAO">
+    <resultMap id="BaseResultMap" type="com.tedu.mle.common.entity.Shop">
         <id column="shop_id" jdbcType="BIGINT" property="shopId"/>
         <result column="shop_name" jdbcType="VARCHAR" property="shopName"/>
         <result column="phone" jdbcType="VARCHAR" property="phone"/>
@@ -38,7 +38,7 @@
         from shop
         where shop_id = #{shopId,jdbcType=BIGINT}
     </delete>
-    <insert id="insert" parameterType="com.tedu.mle.entity.Shop">
+    <insert id="insert" parameterType="com.tedu.mle.common.entity.Shop">
         insert into shop (shop_id,
                           shop_name,
                           phone,
@@ -78,7 +78,7 @@
                 #{minPrice,jdbcType=DOUBLE},
                 #{shippingFee,jdbcType=DOUBLE})
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.tedu.mle.entity.Shop">
+    <update id="updateByPrimaryKeySelective" parameterType="com.tedu.mle.common.entity.Shop">
         update shop
         <set>
             <if test="shopName != null">
@@ -138,8 +138,8 @@
         </set>
         where shop_id = #{shopId,jdbcType=BIGINT}
     </update>
-    <resultMap id="WithDiscountListResultMap" type="com.tedu.mle.entity.Shop" extends="BaseResultMap">
-        <collection property="shopDiscountList" ofType="com.tedu.mle.entity.ShopDiscount">
+    <resultMap id="WithDiscountListResultMap" type="com.tedu.mle.common.entity.Shop" extends="BaseResultMap">
+        <collection property="shopDiscountList" ofType="com.tedu.mle.common.entity.ShopDiscount">
             <id column="discount_id" jdbcType="BIGINT" property="discountId"/>
             <result column="discount_name" jdbcType="VARCHAR" property="discountName"/>
             <result column="shop_id_f" jdbcType="BIGINT" property="shopIdF"/>
@@ -150,7 +150,7 @@
             <result column="d_createtime" jdbcType="DATE" property="createtime"/>
         </collection>
     </resultMap>
-    <select id="selectWithDiscountList" resultMap="WithDiscountListResultMap" parameterType="com.tedu.mle.entity.Shop">
+    <select id="selectWithDiscountList" resultMap="WithDiscountListResultMap" parameterType="com.tedu.mle.common.entity.Shop">
         select shop_id,
         shop_name,
         phone,
@@ -195,38 +195,43 @@
 
     <select id="selectWithDiscountListByCategoryId" resultMap="WithDiscountListResultMap">
         select shop_id,
-               shop_name,
-               phone,
-               manager_name,
-               manager_idcard,
-               `password`,
-               salt,
-               address,
-               proclamation,
-               profile,
-               shop_hours,
-               `state`,
-               main_score,
-               s.createtime,
-               distribution_score,
-               package_score,
-               taste_score,
-               s.min_price,
-               shipping_fee,
-               discount_id,
-               discount_name,
-               shop_id_f,
-               `desc`,
-               `percent`,
-               direct,
-               sd.min_price  as d_min_price,
-               sd.createtime as d_createtime
+        shop_name,
+        phone,
+        manager_name,
+        manager_idcard,
+        `password`,
+        salt,
+        address,
+        proclamation,
+        profile,
+        shop_hours,
+        `state`,
+        main_score,
+        s.createtime,
+        distribution_score,
+        package_score,
+        taste_score,
+        s.min_price,
+        shipping_fee,
+        discount_id,
+        discount_name,
+        shop_id_f,
+        `desc`,
+        `percent`,
+        direct,
+        sd.min_price as d_min_price,
+        sd.createtime as d_createtime
         from shop s
-                 left join shop_discount sd on s.shop_id = sd.shop_id_f
-                                                   and shop_id in (select shop_id_f
-                                                                   from shop_with_category swc,
-                                                                        shop_category sc
-                                                                   where swc.shop_category_id_f = sc.shop_category_id
-                                                                     and sc.shop_category_id = #{id})
+        left join shop_discount sd on s.shop_id = sd.shop_id_f
+        and shop_id in (select shop_id_f
+        from shop_with_category swc,
+        shop_category sc
+        <where>
+            swc.shop_category_id_f = sc.shop_category_id
+            <if test="shopCategoryId!=0 and shopCategoryId!=null">
+                and sc.shop_category_id = #{shopCategoryId}
+            </if>
+        </where>
+        )
     </select>
 </mapper>
